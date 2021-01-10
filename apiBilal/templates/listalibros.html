@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+
+
+{% block cuerpo %}
+<h1> Nuestros libros</h1>
+
+<div class="row">
+    <ul class="list-group">
+          {% for p in libros %}
+            <li id="lista" class="list-group-item">
+              <ul class="list-group">
+                <li class="list-group-item">{{ p.titulo }}</li>
+                <li class="list-group-item">{{ p.autor }}</li>
+
+                <form action='../accioneslibro' method="post">
+                  {% csrf_token %}
+                  
+                  {% load socialaccount %}
+                    {% if user.is_staff %}
+                  <button type="submit" class="btn btn-warning" name="accion" value="editar">Editar</button>
+                  <button type="submit" class="btn btn-danger" name="accion" value="borrar">Borrar</button>
+                  <input type="hidden" name="tit" value={{ p.titulo }} </input>
+                  <input type="hidden" name="aut" value={{ p.autor }} </input>
+                    {% endif %}
+                </form>
+
+              </ul>
+            </li>
+          {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

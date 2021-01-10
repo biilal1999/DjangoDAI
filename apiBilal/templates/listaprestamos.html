@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+
+
+{% block cuerpo %}
+<h1> Nuestros préstamos</h1>
+
+<div class="row">
+    <ul class="list-group">
+          {% for p in prestamos %}
+            <li id="lista" class="list-group-item">
+              <ul class="list-group">
+                <li class="list-group-item">{{ p.libro }}</li>
+                <li class="list-group-item">{{ p.usuario }}</li>
+
+                <form action='../accionesprestamo' method="post">
+                  {% csrf_token %}
+
+                  {% load socialaccount %}
+                    {% if p.usuario == user or user.is_staff %}
+                  <button type="submit" class="btn btn-warning" name="accion" value="editar">Editar</button>
+                  <button type="submit" class="btn btn-danger" name="accion" value="borrar">Borrar</button>
+                  <input type="hidden" name="lib" value={{ p.libro }} </input>
+                  <input type="hidden" name="usu" value={{ p.usuario.id }} </input>
+                  <input type="hidden" name="id" value={{ p.libro.id }} </input>
+                    {% endif %}
+                </form>
+
+              </ul>
+            </li>
+          {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

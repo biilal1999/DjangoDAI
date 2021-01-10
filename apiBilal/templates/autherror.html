@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block titulo %}
+Error login
+{% endblock %}
+
+
+
+{% block cuerpo %}
+  <div class="container">
+      <div class="row">
+        <h1 class="mt-5">Bienvenido a la Práctica 6 de DAI</h1>
+      </div>
+
+      <div class="row" id="abajo">
+          <h2 class="error">No tiene permisos para realizar esta acción</h2>
+      </div>
+
+  <div class="row"
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic" id="texto">Microframeworks, sesiones y Flask</h1>
+          <p class="lead my-3">En este sitio web podrá iniciar sesión, acceder a la resolución de ejercicios y consultar sus últimas páginas visitadas</p>
+          <p class="lead mb-0"><a href="https://swad.ugr.es" class="text-red font-weight-bold">Continue reading...</a></p>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

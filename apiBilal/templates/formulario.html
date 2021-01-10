@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+{{ titulo }}
+{% endblock %}
+
+
+{% block cuerpo %}
+<form action="{{ ruta }}" method="post">
+    {% csrf_token %}
+    <h2>{{ msg }}</h2>
+    {{ form.as_p }}
+
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary">Enviar</button>
+
+      {% if 'pres' %}
+      {% load socialaccount %}
+      <input type="hidden" name="usuario" value={{ user }} </input>
+      {% endif %}
+
+      {% if 'tit' %}
+      <input type="hidden" name="titantiguo" value={{ tit }} </input>
+      <input type="hidden" name="autantiguo" value={{ aut }} </input>
+      {% endif %}
+
+      {% if 'usu' %}
+      <input type="hidden" name="usuantiguo" value={{ usu }} </input>
+      <input type="hidden" name="iden" value={{ iden }} </input>
+      {% endif %}
+
+    </div>
+  </div>
+</form>
+
+{% if 'mensaje' %}
+<h3 class="success">{{ mensaje }}</h3>
+{% endif %}
+{% endblock %}
